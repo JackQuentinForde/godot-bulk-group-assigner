@@ -3,8 +3,8 @@ extends Node
 
 @export_file("*tscn") var sceneFile : String
 @export var nodePrefix : String = ""
-@export var groupName : String = ""
-@export var operationMode : int = 0 ## 0 to assign nodes to group, 1 to remove nodes from group
+@export var groups : Array[String] = []
+@export var overwriteScene : bool = false
 @export var runProcessing : bool = false : set = setRunProcessing
 
 func setRunProcessing(value : bool) -> void:
@@ -23,18 +23,39 @@ func processFile(prefix : String) -> void:
 	readFile.close()
 
 	var lines = content.split("\n")
-	var groupPart = " groups=[\"" + groupName + "\"]"
+	
+	var groupsPart = ""
+	if groups.size() > 0:
+		groupsPart = "groups=[\"" + groups[0] + "\""
 
+		if groups.size() > 1:
+			for i in range(1, groups.size()):
+				groupsPart += ",\"" + groups[i] + "\""
+			if groupsPart.contains("]"):
+				push_error("Groups must not have closing brackets (]) in their names.")
+				return
+		groupsPart += "]"
 
 	var changesPending = false
 
 	for i in range(lines.size()):
 		var line = lines[i]
 
-		var groupAssignmentCondition = not line.contains(groupPart) if operationMode == 0 else line.contains(groupPart)
+		if line.begins_with(prefix):
+			var newLine = ""
 
-		if line.begins_with(prefix) and groupAssignmentCondition:
-			var newLine = line.rstrip("] ") + groupPart + "]" if operationMode == 0 else line.replace(groupPart, "")
+			if line.contains("groups=["):
+				var startIndex = line.find("groups=[")
+				var endIndex = line.find("]", startIndex)
+
+				if endIndex == -1:
+					push_error("Malformed groups assignment in line: " + line)
+					return
+					
+				newLine = line.substr(0, startIndex) + groupsPart + line.substr(endIndex + 1)
+			else:
+				newLine = line.rstrip("] ") + groupsPart + "]"
+				
 			lines[i] = newLine
 			changesPending = true
 			print("Changing " + line + " to " + newLine)
@@ -42,13 +63,14 @@ func processFile(prefix : String) -> void:
 	if changesPending:
 		var newContent = "\n".join(lines)
 
-		# Uncomment the line below if you want to write changes directly to the original scene file, but be careful as this may break your scene if something goes wrong
-		# var writeFile = FileAccess.open(sceneFile, FileAccess.WRITE)
-
-		# Comment out these three lines if you want to write changes directly to the original file
-		var newFile = sceneFile.get_base_dir() + "/" + sceneFile.get_file().get_basename() + "_modified.tscn"
-		print("Writing changes to " + newFile)
-		var writeFile = FileAccess.open(newFile, FileAccess.WRITE)
+		var writeFile : FileAccess
+		if overwriteScene:
+			print("Overwriting original scene file: " + sceneFile)
+			writeFile = FileAccess.open(sceneFile, FileAccess.WRITE)
+		else:
+			var newFile = sceneFile.get_base_dir() + "/" + sceneFile.get_file().get_basename() + "_modified.tscn"
+			print("Writing changes to " + newFile)
+			writeFile = FileAccess.open(newFile, FileAccess.WRITE)
 
 		writeFile.store_string(newContent)
 		writeFile.close()

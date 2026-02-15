@@ -2,14 +2,14 @@
 
 [node name="TestScene" type="Node"]
 
-[node name="GroupNode" type="Node" parent="." groups=["TestGroup2"]]
+[node name="GroupNode" type="Node" parent="." groups=["TestNode"]]
 
-[node name="GroupNode2" type="Node" parent="." groups=["TestGroup2"]]
+[node name="GroupNode2" type="Node" parent="." groups=["TestNode"]]
 
-[node name="GroupNode3" type="Node" parent="." groups=["TestGroup2"]]
+[node name="GroupNode3" type="Node" parent="."groups=["TestNode"]]
 
-[node name="GroupNode4" type="Node" parent="." groups=["TestGroup2"]]
+[node name="GroupNode4" type="Node" parent="."groups=["TestNode"]]
 
-[node name="GroupNode5" type="Node" parent="." groups=["TestGroup2"]]
+[node name="GroupNode5" type="Node" parent="." groups=["TestNode"]]
 
-[node name="GroupNode6" type="Node" parent="." groups=["TestGroup2"]]
+[node name="GroupNode6" type="Node" parent="."groups=["TestNode"]]
