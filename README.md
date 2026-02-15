@@ -8,6 +8,10 @@ supplied nodePrefix string in the chosen scene.</p>
   which can be frustratingly slow. This script solves that problem by allowing you to assign all nodes with a given name prefix to a group all at once simply by setting the parameters and executing the script.
 </p>
 
+<h2>How to add this to your project</h2>
+<p>Just copy the 'group_assigner' scene to wherever you keep your scenes, and the 'group_assigner' script to wherever you keep your scripts. Open the 'group_assigner' scene in your project, and fix the dependencies by setting the correct path to your 
+'group_assigner' script. Now the scene is ready to use in your project.</p>
+
 <h2>How it works</h2>
 <p>The script reads a given tscn scene file and then rewrites it to a new tscn file which will have the specified group assigment applied. Check the new tscn file by attempting to open it in the editor, if it opens and your nodes have been assigned as you expected,
 then it is safe to overwrite your original scene with the new one (just rename the file to the original file name to overwrite it).
@@ -33,7 +37,3 @@ are updated.</p>
 
 <h3>operationMode</h3> 
 <p>Set this to 0 to assign nodes to a group, or 1 to unassign them.</p>
-
-<h2>How to add this to your project</h2>
-<p>Just copy the 'group_assigner' scene to wherever you keep your scenes, and the 'group_assigner' script to wherever you keep your scripts. Open the 'group_assigner' scene in your project, and fix the dependencies by setting the correct path to your 
-'group_assigner' script. Now the scene is ready to use in your project.</p>
