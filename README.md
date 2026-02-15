@@ -5,7 +5,7 @@ supplied nodePrefix string.</p>
 
 <h2>Why would you need this?</h2>
 <p>Currently it is not possible to assign multiple nodes to a group simultaneously within the editor in the latest version of Godot Engine. This means that when you want to assign several nodes to a group, you have to assign them all one at a time, 
-which can be frustratingly slow. This script solves that problem by allowing you to assign all nodes with a given name prefix to a group, or groups all at once simply by setting the parameters and executing the script. You can also remove nodes from
+which can be frustratingly slow. This script solves that problem by allowing you to assign all nodes with a given name prefix to a group, or multiple groups all at once simply by setting the parameters and executing the script. You can also remove nodes from
 all groups by simply not supplying any groups and executing the script.</p>
 
 <h2>How to add this to your project</h2>
