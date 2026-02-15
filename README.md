@@ -15,7 +15,7 @@ all groups by simply not supplying any groups and executing the script.</p>
 <h2>How it works</h2>
 <p>The script reads a given tscn scene file and then either overwrites it, or writes to a new tscn file, with the specified groups applied to the relevant nodes. If not using source control, it is highly recommended to write to a new file first, and then
 only overwrite after checking that the modified scene file is working. Check the new tscn file by attempting to open it in the editor, if it opens and your nodes have been assigned as you expected, then it is safe to overwrite your original scene with the new one.
-Please be extremely careful with this, if you use this script in overwrite mode and end up breaking your project, don't say I din't warn you.
+Please be extremely careful with this, if you use this script in overwrite mode and end up breaking your project, don't say I didn't warn you.
 <br><br>
 It's a bit of a hacky solution, but it solves the problem of not being able to assign multiple nodes to a group at once.
 
