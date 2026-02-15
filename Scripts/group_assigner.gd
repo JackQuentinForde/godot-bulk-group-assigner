@@ -14,33 +14,44 @@ func setRunProcessing(value : bool) -> void:
 		processFile(fullNodePrefix)
 
 func processFile(prefix : String) -> void:
-	if FileAccess.file_exists(sceneFile):
-		var readFile = FileAccess.open(sceneFile, FileAccess.READ)
-		var content = readFile.get_as_text()
-		readFile.close()
-
-		var lines = content.split("\n")
-		var groupPart = " groups=[\"" + groupName + "\"]"
-
-		var changesPending = false
-
-		for i in range(lines.size()):
-			var line = lines[i]
-
-			var groupAssignmentCondition = not line.contains(groupPart) if operationMode == 0 else line.contains(groupPart)
-
-			if line.begins_with(prefix) and groupAssignmentCondition:
-				var newLine = line.rstrip("] ") + groupPart + "]" if operationMode == 0 else line.replace(groupPart, "")
-				lines[i] = newLine
-				changesPending = true
-				print("Changing " + line + " to " + newLine)
-
-		if changesPending:
-			var newContent = "\n".join(lines)
-			var writeFile = FileAccess.open(sceneFile, FileAccess.WRITE)
-			writeFile.store_string(newContent)
-			writeFile.close()
-			print("Group assignment completed!")
-	else :
+	if not FileAccess.file_exists(sceneFile):
 		push_error("Scene file not found: %s" % sceneFile)
 		return
+
+	var readFile = FileAccess.open(sceneFile, FileAccess.READ)
+	var content = readFile.get_as_text()
+	readFile.close()
+
+	var lines = content.split("\n")
+	var groupPart = " groups=[\"" + groupName + "\"]"
+
+
+	var changesPending = false
+
+	for i in range(lines.size()):
+		var line = lines[i]
+
+		var groupAssignmentCondition = not line.contains(groupPart) if operationMode == 0 else line.contains(groupPart)
+
+		if line.begins_with(prefix) and groupAssignmentCondition:
+			var newLine = line.rstrip("] ") + groupPart + "]" if operationMode == 0 else line.replace(groupPart, "")
+			lines[i] = newLine
+			changesPending = true
+			print("Changing " + line + " to " + newLine)
+
+	if changesPending:
+		var newContent = "\n".join(lines)
+
+		# Uncomment the line below if you want to write changes directly to the original scene file, but be careful as this may break your scene if something goes wrong
+		# var writeFile = FileAccess.open(sceneFile, FileAccess.WRITE)
+
+		# Comment out these three lines if you want to write changes directly to the original file
+		var newFile = sceneFile.get_base_dir() + "/" + sceneFile.get_file().get_basename() + "_modified.tscn"
+		print("Writing changes to " + newFile)
+		var writeFile = FileAccess.open(newFile, FileAccess.WRITE)
+
+		writeFile.store_string(newContent)
+		writeFile.close()
+		print("Group assignment completed!")
+	else:
+		print("No changes applied.")
