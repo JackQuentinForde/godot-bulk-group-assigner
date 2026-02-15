@@ -9,13 +9,13 @@ supplied nodePrefix string in the chosen scene.</p>
 </p>
 
 <h2>How it works</h2>
-<p>The script reads a given tscn scene file and then rewrites it to a new tscn file which will have the specified group assigments applied. Check the new tscn file by attempting to open it in the editor, if it opens and your nodes have been assigned as you expected,
+<p>The script reads a given tscn scene file and then rewrites it to a new tscn file which will have the specified group assigment applied. Check the new tscn file by attempting to open it in the editor, if it opens and your nodes have been assigned as you expected,
 then it is safe to overwrite your original scene with the new one (just rename the file to the original file name to overwrite it).
-<br><br>
-If you are using source control and are comfortable with potentially applying breaking changed to your scene file, feel free to alter the script so that it writes directly to the original file, that's how I use it in my projects.
 <br><br>
 The reason for writing to a new file is that there is potential for this script to corrupt your scene if not used carefully, and since a lot of people don't use source control (please use source control!) I didn't want to risk allowing them to 
 break their projects with my script. It's a bit of a hacky solution, but it solves the problem of not being able to assign multiple nodes to a group at once.</p>
+<br><br>
+If you are using source control and are comfortable with potentially applying breaking changed to your scene file, feel free to alter the script so that it writes directly to the original file, that's how I use it in my projects.
 
 <h2>How to run the script</h2>
 <p>The script takes in 4 parameters which can be set in the editor in 'group_assigner' scene. Set these parameters as desired and then run the script by setting 'Run Processing' to on, the script will run immediately. You can check the output panel to see which nodes
