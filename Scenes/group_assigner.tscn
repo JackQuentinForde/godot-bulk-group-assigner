@@ -6,4 +6,4 @@
 script = ExtResource("1_ra24c")
 sceneFile = "res://Scenes/test_scene.tscn"
 nodePrefix = "GroupNode"
-groups = Array[String](["TestNode"])
+groups = Array[String](["TestGroup"])
