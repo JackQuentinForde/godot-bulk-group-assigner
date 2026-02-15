@@ -31,8 +31,8 @@ are updated.</p>
 <p>This is the prefix for the nodes you want to assign to the group, so for example if you have 10 enemy nodes in your scene named like 'enemy1, enemy2, enemy3, etc.' then set nodePrefix to 'enemy'.</p>
 
 <h3>groups</h3> 
-<p>These are the names of the groups you want to assign. Be aware that this will ignore all previous group assignemnts for the relevant nodes. Also bare in mind you have to create the groups in the editor first. If not groups are supplied, this has the effect
+<p>These are the names of the groups you want to assign. Be aware that this will ignore all previous group assignemnts for the relevant nodes. Also bare in mind you have to create the groups in the editor first. If no groups are supplied, this has the effect
 of removing all group assignments from the relevant nodes.</p>
 
 <h3>overwriteScene</h3> 
-<p>When set to true this will overwrite the existing scene rather than saving to a new one. It is set to false by default, again, be very careful when setting it to true.</p>
+<p>When set to true this will overwrite the existing scene rather than saving to a new one. It is set to false by default, be very careful when setting it to true.</p>
