@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://7rlak66rluwa"]
+
+[ext_resource type="Script" path="res://Scripts/group_assigner.gd" id="1_ra24c"]
+
+[node name="GroupAssigner" type="Node"]
+script = ExtResource("1_ra24c")
+sceneFile = "res://Scenes/test_scene.tscn"
+nodePrefix = "GroupNode"
+groupName = "TestGroup"
