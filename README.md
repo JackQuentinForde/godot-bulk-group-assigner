@@ -1,5 +1,9 @@
 <h1>Godot Bulk Group Assigner</h1>
 
+<h2>UPDATE</h2>
+<p>Since writing this script I have learned that this problem is only present in some versions of Godot Engine. As of version 4.6 this issue has been fixed, and it is now possible to assign multiple nodes to a group in the editor. This script was written specifically
+for version 4.3, where the issue is present.</p>
+
 <p>This is a Godot Engine template project which contains the 'group_assigner' scene which has a script with the same name attached. The scene can be used to execute the script which assigns groups to any nodes in the specified scene that match the 
 supplied nodePrefix string.</p>
 
